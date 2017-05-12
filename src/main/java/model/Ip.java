@@ -5,7 +5,7 @@ import static validator.NetworkHelper.getIpFrom;
 
 public class Ip
 {
-  protected long ip;
+  private long ip;
 
   public Ip(long ip)
   {

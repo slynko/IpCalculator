@@ -1,37 +1,37 @@
 package model;
 
-import static constant.NetworkConstants.MAX_IP_MASK;
-import static constant.NetworkConstants.MAX_MASK_VALUE;
-import static constant.NetworkConstants.MIN_MASK_VALUE;
-import static validator.NetworkHelper.isMaskValid;
+import static constant.NetworkConstants.FIRST_OCTET_MASK;
+import static constant.NetworkConstants.FOURTH_OCTET_MASK;
+import static constant.NetworkConstants.SECOND_OCTET_MASK;
+import static constant.NetworkConstants.THIRD_OCTET_MASK;
+import static validator.NetworkHelper.getIpFrom;
+import static validator.NetworkHelper.getMaskFrom;
 
-public class Mask extends Ip
+public class Mask
 {
+  private long mask;
+
   public Mask(String mask)
   {
-    super(mask);
+    this.mask = getIpFrom(mask);
   }
 
-  public Mask(long mask)
+  public Mask(long numericMask)
   {
-    super(mask);
-    if (isMaskValid(mask))
-    {
-      this.ip = MAX_IP_MASK << mask & MAX_IP_MASK;
-    }
-    else
-    {
-      throw new IllegalArgumentException("Argument is not correct: " + mask);
-    }
+    this.mask = getMaskFrom(numericMask);
   }
 
-  public int getIntMask() {
-    int intMask = 1;
-    long mask = this.ip;
-    while(((mask <<= 1) & MAX_IP_MASK) > 0)
-    {
-      intMask++;
-    }
-    return 32 - intMask;
+  @Override
+  public String toString()
+  {
+    return ((mask & FIRST_OCTET_MASK) >> 24) + "."
+        +((mask & SECOND_OCTET_MASK) >> 16) + "."
+        + ((mask & THIRD_OCTET_MASK) >> 8) + "."
+        + (mask & FOURTH_OCTET_MASK);
+  }
+
+  public long getLongValue()
+  {
+    return mask;
   }
 }
