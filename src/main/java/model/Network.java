@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-
 @Data
 public class Network {
     private List<Integer> subnetHostsAmount;
@@ -23,7 +22,8 @@ public class Network {
     }
 
     public void printNetwork() {
-        System.out.printf("%-5s%-20s%-20s%-20s%-20s%-20s" + System.lineSeparator(), "№", "Ip", "Mask", "Broadcast", "First host", "Last host");
+        System.out.printf("%-5s%-20s%-20s%-20s%-20s%-20s" + System.lineSeparator(),
+                "№", "Ip", "Mask", "Broadcast", "First host", "Last host");
         for (Subnet subnet : subnets) {
             System.out.printf("%-5s%-20s%-20s%-20s%-20s%-20s" + System.lineSeparator(),
                     subnets.indexOf(subnet) + 1, subnet.getIp(), subnet.getMask(), subnet.getBroadcast(), subnet.getFirstHostIp(), subnet.getLastHostIp());

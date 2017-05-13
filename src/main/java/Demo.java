@@ -8,6 +8,8 @@ import java.util.List;
 
 public class Demo {
     public static void main(String[] args) {
+        String baseIp = "10.0.0.0";
+        int baseMask = 16;
         List<Integer> subnetHostsAmount = Arrays.asList(
                 125, 125, 125, 125, 125, 125
                 , 50, 50, 50, 50, 50, 50
@@ -16,7 +18,7 @@ public class Demo {
                 , 7, 7
         );
 
-        Network network = new Network(subnetHostsAmount, "10.0.0.0", 16);
+        Network network = new Network(subnetHostsAmount, baseIp, baseMask);
         NetworkDirector networkDirector = new NetworkDirector();
         networkDirector.buildNetwork(new LocalNetworkBuilder(network));
         network.printNetwork();
