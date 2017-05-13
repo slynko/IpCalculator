@@ -2,21 +2,20 @@ package builder;
 
 import model.Network;
 
-public abstract class NetworkBuilder
-{
-  protected Network network;
+public abstract class NetworkBuilder {
+    protected Network network;
 
-  public abstract void calculateIpsAndMasks();
-  public abstract void calculateBroadcasts();
-  public abstract void calculateFirstAndLastHost();
+    public abstract void calculateIpsAndMasks();
 
-  public NetworkBuilder(Network network)
-  {
-    this.network = network;
-  }
+    public abstract void calculateBroadcasts();
 
-  public Network getNetwork()
-  {
-    return network;
-  }
+    public abstract void calculateFirstAndLastHost();
+
+    public NetworkBuilder(Network network) {
+        this.network = network;
+    }
+
+    public Network getNetwork() {
+        return network;
+    }
 }
